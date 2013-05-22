@@ -2,37 +2,37 @@ snippet pro "program" b
 program ${1:name}
 	implicit none
 	${2:! code}
-end program ${1}
+end program $1
 endsnippet
 
 snippet mod "module" b
 module ${1:name}
     implicit none
 	${2:! code}
-end module ${1}
+end module $1
 endsnippet
 
 snippet use "use module" b
 use ${1:module}, only: ${2:symbols}	
 endsnippet
 
-snippet interface "interface" b
+snippet interf "interface" b
 interface ${1:name}
 	${2:! code}
-end interface ${1}
+end interface $1
 endsnippet
 
 snippet sub "subroutine" b
 subroutine ${1:name}(${2:parameters})
     implicit none
 	${3:! code}
-end subroutine ${1}
+end subroutine $1
 endsnippet
 
 snippet func "function" b
 function ${1:name}(${2:parameters}) result(${3:parameter})
 	${4:! code}
-end function ${1}
+end function $1
 endsnippet
 
 snippet if "if"
@@ -41,7 +41,7 @@ if (${1:condition}) then
 end if
 endsnippet
 
-snippet ifelse "if...else..."
+snippet ife "if...else..."
 if (${1:condition}) then
 	${2:! code}
 else
@@ -61,19 +61,34 @@ do while (${1:condition})
 end do
 endsnippet
 
+snippet sc "select case"
+select case(${1:name})
+case(${2:condition})
+    ${3:! code}
+end selecct
+endsnippet
+
 snippet type "type"
-type :: ${1:name}
+type :: ${1:typername}
     ${2:! code}
 end type $1
 endsnippet
 
+snippet t
+type(${1:typername}) :: ${2:name}
+endsnippet
+
+snippet const "constant"
+${1:datatype}, parameter :: ${3:name} = ${4:value}
+endsnippet
+
 snippet arr "array"
-${1:type}, dimension(${2}) :: ${3}
+${1:datatype}, dimension(${2:size}) :: ${3:name}
 endsnippet
 
 snippet where "where"
 where (${1:condition}) 
-    ${2:code}
+    ${2:! code}
 end where
 endsnippet
 
@@ -85,55 +100,62 @@ elsewhere
 end where
 endsnippet
 
-snippet const "constant"
-${1:type}, parameter :: ${3} = ${4}
+snippet i "integer"
+integer(kind = ${1:4}) :: ${2:name}
 endsnippet
 
-snippet i
-integer :: ${1}
+snippet r "real"
+real(kind = ${1:8}) :: ${2:name}
 endsnippet
 
-snippet r
-	real :: ${1}
+snippet c "complex"
+complex(kind = ${1:8}) :: ${2:name}
 endsnippet
 
-
-snippet ik
-	integer(kind = ${1}) :: ${2}
+snippet ia "allocatable integer array"
+integer(kind = ${1:4}), dimension(${2:size}) allocatable :: ${3:name}
 endsnippet
 
-snippet rk
-	real(kind = ${1}) :: ${2}
+snippet ra "allocatable real array"
+real(kind = ${1:8}), dimension(${2:size}), allocatable :: ${3:name}
 endsnippet
 
-snippet l
-	logical :: ${1}
+snippet ca ""allocatable complex array"
+complex(kind = ${1:8}), dimension(${2:size}), allocatable :: ${3:name}
 endsnippet
 
-snippet c
-	character :: ${1}
+snippet l "logical"
+logical :: ${1:name}
 endsnippet
 
-snippet s
-	character(len=${1}) :: ${2}
+snippet ch "character"
+character(len = ${1:size}) :: ${2:name}
 endsnippet
 
-snippet t
-	type(${1}) :: ${2}
+snippet pi "integer parameter"
+integer(kind = ${1:4}), intent(${2:inout}) :: ${3:name}
 endsnippet
 
-snippet var
-	${1:type}(${2:kind})${3:, properties} :: ${4:varname}
+snippet pr "real parameter"
+real(kind = ${1:8}), intent(${2:inout}) :: ${3:name}
 endsnippet
 
-snippet fvar
-	${1:type}(${2:kind}), intent(${3:inout})${4:, properties} :: ${5:varname}
+snippet pc "complex parameter"
+complex(kind = ${1:8}), intent(${2:inout}) :: ${3:name}
+endsnippet
+
+snippet pl "logical parameter"
+logical, intent(${1:inout}) :: ${2:name}
+endsnippet
+
+snippet pch "character parameter"
+character(len = ${1:size}), intent(${2:inout}) :: ${3:name}
 endsnippet
 
 snippet open "open file"
 open (unit=${1:10}, file=${2:filename}, ${3})
-${4}
-close(${1})
+${4:! code}
+close($1)
 endsnippet
 
 snippet write "write file"

@@ -1,2 +1,3 @@
-ultisnips-snippets-fortran
+ultisnips-fortran
 ==========================
+UltiSnips snippets for Fortran 95

@@ -62,14 +62,14 @@ end do
 endsnippet
 
 snippet sc "select case"
-select case(${1:name})
+select case (${1:parameter})
 case(${2:condition})
     ${3:! code}
 end selecct
 endsnippet
 
 snippet type "type"
-type :: ${1:typername}
+type :: ${1:typename}
     ${2:! code}
 end type $1
 endsnippet
@@ -112,16 +112,28 @@ snippet c "complex"
 complex(kind = ${1:8}) :: ${2:name}
 endsnippet
 
-snippet ia "allocatable integer array"
-integer(kind = ${1:4}), dimension(${2:size}) allocatable :: ${3:name}
+snippet ia "integer array"
+integer(kind = ${1:4}), dimension(${2:size}) :: ${3:name}
 endsnippet
 
-snippet ra "allocatable real array"
-real(kind = ${1:8}), dimension(${2:size}), allocatable :: ${3:name}
+snippet ra "real array"
+real(kind = ${1:8}), dimension(${2:size}) :: ${3:name}
 endsnippet
 
-snippet ca "allocatable complex array"
-complex(kind = ${1:8}), dimension(${2:size}), allocatable :: ${3:name}
+snippet ca "complex array"
+complex(kind = ${1:8}), dimension(${2:size}) :: ${3:name}
+endsnippet
+
+snippet iaa "allocatable integer array"
+integer(kind = ${1:4}), dimension(${2::}), allocatable :: ${3:name}
+endsnippet
+
+snippet raa "allocatable real array"
+real(kind = ${1:8}), dimension(${2::}), allocatable :: ${3:name}
+endsnippet
+
+snippet caa "allocatable complex array"
+complex(kind = ${1:8}), dimension(${2::}), allocatable :: ${3:name}
 endsnippet
 
 snippet l "logical"

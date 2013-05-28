@@ -63,9 +63,11 @@ endsnippet
 
 snippet sc "select case"
 select case (${1:parameter})
-case(${2:condition})
-    ${3:! code}
-end selecct
+    case (${2:condition})
+        ${3:! code}
+    case default
+        ${4:!code}
+end select
 endsnippet
 
 snippet type "type"
